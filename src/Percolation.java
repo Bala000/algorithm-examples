@@ -74,9 +74,9 @@ public class Percolation {
     public boolean isFull(int row, int col){
         if(row<1 || col<1 || row>(sites.length-1) || col>(sites.length-1) )
             throw new java.lang.IndexOutOfBoundsException();
-
-        if(!weightedQuickUnionUF.connected(((sites.length-1)*(row-1))+col-1,(sites.length-1)*(sites.length-1)))
+        if((!weightedQuickUnionUF.connected(((sites.length-1)*(row-1))+col-1,(sites.length-1)*(sites.length-1)))||sites[row][col]==1)
             return false;
+
         return true;
     }
 
@@ -91,16 +91,6 @@ public class Percolation {
     public boolean percolates()
     {
         if (weightedQuickUnionUF.connected((sites.length-1)*(sites.length-1),((sites.length-1)*(sites.length-1))+1)) {
-//            int count = 0;
-//            for (int i = 1; i < sites.length; i++)
-//            {
-//                for (int j = 1; j < sites.length; j++) {
-//                    if (sites[i][j] == 0)
-//                        ++count;
-//                }
-//            }
-//            this.numberOfOpenSites=count;
-
             return true;
         }
 
